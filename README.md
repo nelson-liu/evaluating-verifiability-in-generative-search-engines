@@ -2,6 +2,17 @@
 
 This repository contains accompanying material for [Evaluating Verifiability in Generative Search Engines]().
 
+## AllSouls
+
+The data for `allsouls` queries can be found at [`./allsouls`](./allsouls).
+See [`./allsouls/README.md`](./allsouls/README.md) for more details.
+
+## davinci-debate
+
+The data for the `davinci-debate` queries (debate queries generated with `text-davinci-003`) can be found at [`./davinci_debate`](./davinci_debate).
+In particular, you can find the seed queries at [`./davinci_debate/seed.jsonl`](./davinci_debate/seed.jsonl),
+a script for prompting `text-davinci-003` to generate new queries at [`./davinci_debate/generate_questions.py`](./davinci_debate/generate_questions.py), and 1K generated queries at [`./davinci_debate/davinci-debate-1k.jsonl`](./davinci_debate/davinci-debate-1k.jsonl).
+
 ## Human Evaluation Annotations
 
 We've released the human evaluation annotations at [`human_evaluation_annotations.jsonl`](./human_evaluation_annotations.jsonl).
