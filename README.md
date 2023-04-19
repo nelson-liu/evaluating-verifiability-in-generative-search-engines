@@ -105,7 +105,23 @@ class CitationSupportsEnum(str, Enum):
     unclear = "Statement is Unclear, Can't Make Judgment"
 ```
 
-# References
+## Bing + OpenAI minimal baseline
+
+We've released code for an extremely minimal baseline that uses
+`text-davinci-003` to answer input queries from retrieved Bing Search results.
+We found playing with this to be pretty useful for getting intuition about how
+models might be using in-context retrieved documents.
+
+See [`predict_bing_openai.py`](./predict_bing_openai.py) for more information. To run, use:
+
+```sh
+python scripts/predict_bing_openai.py \
+    --openai-api-key '<put your openai API key here>' \
+    --bing-api-key '<put your bing API key here>' \
+    --query 'what is the difference between llamas and alpacas?'
+```
+
+## References
 
 Please consider citing our work if you found this code or our paper beneficial to your research.
 
