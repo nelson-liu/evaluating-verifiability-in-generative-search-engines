@@ -1,6 +1,6 @@
 # Evaluating Verifiability in Generative Search Engines
 
-This repository contains accompanying material for [Evaluating Verifiability in Generative Search Engines](https://cs.stanford.edu/~nfliu/papers/liu+zhang+liang.arxiv2023.pdf).
+This repository contains accompanying material for [Evaluating Verifiability in Generative Search Engines](https://arxiv.org/abs/2304.09848).
 
 ## AllSouls
 
@@ -129,6 +129,7 @@ Please consider citing our work if you found this code or our paper beneficial t
 @misc{liu-zhang-liang:2023:arxiv,
   author    = {Nelson F. Liu  and  Tianyi Zhang  and  Percy Liang},
   title     = {Evaluating Verifiability in Generative Search Engines},
+  note      = {arXiv:2304.09848},
   year      = {2023}
 }
 ```
