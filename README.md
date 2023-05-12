@@ -21,9 +21,9 @@ related topics.
 
 We split the data into train, development, and testing (80%/10%/10%). The data is split such that the same query does not appear in multiple splits. Each data file is a gzipped file of new-line separated JSON objects. The files are at:
 
-- [verifiability_judgments/verifiability_judgments_train.jsonl.gz](./verifiability_judgments/verifiability_judgments_train.jsonl.gz)
-- [verifiability_judgments/verifiability_judgments_dev.jsonl.gz](./verifiability_judgments/verifiability_judgments_dev.jsonl.gz)
-- [verifiability_judgments/verifiability_judgments_test.jsonl.gz](./verifiability_judgments/verifiability_judgments_test.jsonl.gz)
+- [verifiability_judgments/verifiability_judgments_train.jsonl.gz](https://github.com/nelson-liu/evaluating-verifiability-in-generative-search-engines/raw/main/verifiability_judgments/verifiability_judgments_train.jsonl.gz)
+- [verifiability_judgments/verifiability_judgments_dev.jsonl.gz](https://github.com/nelson-liu/evaluating-verifiability-in-generative-search-engines/raw/main/verifiability_judgments/verifiability_judgments_dev.jsonl.gz)
+- [verifiability_judgments/verifiability_judgments_test.jsonl.gz](https://github.com/nelson-liu/evaluating-verifiability-in-generative-search-engines/raw/main/verifiability_judgments/verifiability_judgments_test.jsonl.gz)
 
 There are 8834 training examples, 1106 dev examples, and 1097 test examples. The
 label distribution is as follows:
