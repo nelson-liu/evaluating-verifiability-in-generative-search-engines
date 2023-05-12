@@ -13,9 +13,47 @@ The data for the `davinci-debate` queries (debate queries generated with `text-d
 In particular, you can find the seed queries at [`./davinci_debate/seed.jsonl`](./davinci_debate/seed.jsonl),
 a script for prompting `text-davinci-003` to generate new queries at [`./davinci_debate/generate_questions.py`](./davinci_debate/generate_questions.py), and 1K generated queries at [`./davinci_debate/davinci-debate-1k.jsonl`](./davinci_debate/davinci-debate-1k.jsonl).
 
-## Human Evaluation Annotations
+## Verifiability Judgments
 
-We've released the human evaluation annotations at [`human_evaluation_annotations.jsonl`](./human_evaluation_annotations.jsonl).
+We've released a dataset of verifiability judgments, which we hope will be useful for
+future work in developing automated metrics for verifiability judgement, document-level NLI, or other
+related topics.
+
+We split the data into train, development, and testing (80%/10%/10%). The data is split such that the same query does not appear in multiple splits. Each data file is a gzipped file of new-line separated JSON objects. The files are at:
+
+- [verifiability_judgments/verifiability_judgments_train.jsonl.gz](./verifiability_judgments/verifiability_judgments_train.jsonl.gz)
+- [verifiability_judgments/verifiability_judgments_dev.jsonl.gz](./verifiability_judgments/verifiability_judgments_dev.jsonl.gz)
+- [verifiability_judgments/verifiability_judgments_test.jsonl.gz](./verifiability_judgments/verifiability_judgments_test.jsonl.gz)
+
+There are 8834 training examples, 1106 dev examples, and 1097 test examples. The
+label distribution is as follows:
+
+- Train: `{'complete_support': 6415, 'partial_support': 1552, 'no_support': 867}`
+- Dev: `{'complete_support': 830, 'partial_support': 165, 'no_support': 111}`
+- Test: `{'complete_support': 797, 'partial_support': 183, 'no_support': 117}`
+
+Each JSON object has the following fields:
+
+- `query`: `str` with the original user query
+- `response`: `str` with the complete system response
+- `statement`: `str` with the statement to make the verification judgment on
+- `source_title`: `Optional[str]` HTML `<title>` of the cited webpage, if one exists.
+- `source_content_title`: `Optional[str]` extracted title from the content of the cited webpage.
+- `source_date`: `Optional[str]` with the article's date, if one is provided. 
+- `source_author`: `Optional[str]` with the article's author, if one is provided.
+- `source_text`: `str` with the article's text, with formatting.
+- `source_raw_text`: `str` with the article's text, without formatting.
+- `source_supports_statement`: `str` verifiability judgment provided by the annotator. One of `complete_support`, `partial_support`, or `no_support`.
+- `source_localized_evidence`: `Optional[str]` copy-and-pasted portions of the target webpage that annotators used to justify their verifiability judgement. Annotators were instructed to set the minimal set of sentences necessary to support their judgment, with each sentence on different lines. The evidence is not guaranteed to exactly appear in the `source_text`, since they may have selected portions of the page that were not preserved by our HTML-to-text pipeline.
+- `source_url`: `str` URL cited webpage.
+
+### Converting HTML to text
+
+To extract text from HTML pages,  we first used [`single-filez`](https://github.com/gildas-lormeau/single-filez-cli) to download cited webpages and their associated assets (e.g., CSS and images). Then, we use the [Chrome DOM Distiller](https://github.com/chromium/dom-distiller) to extract the "readable" portion of the page (this is the view that appears when you use "Reader Mode" in the Chrome browswer). Finally, we used [Trafilatura](https://trafilatura.readthedocs.io/en/latest/) to extract the text from the DOM-distilled HTML.
+
+## Human Evaluation Annotations
+We've released the human evaluation annotations at
+[`human_evaluation_annotations.jsonl`](./human_evaluation_annotations.jsonl).
 
 Each line of `human_evaluation_annotations.jsonl` contains a query-response pair with a human evaluation annotation.
 The format of the data is described by the following Python dataclasses:
